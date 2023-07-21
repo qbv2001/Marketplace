@@ -1,0 +1,102 @@
+﻿@{
+    ViewData["Title"] = "Shopee | Mua và bán";
+}
+
+<div class="row">
+	<main class="col-md-9">
+        <div class="card">
+
+        <table class="table table-borderless table-shopping-cart">
+        <thead class="text-muted">
+        <tr class="small text-uppercase">
+        <th scope="col">Sản phẩm</th>
+        <th scope="col" width="120">Số lượng</th>
+        <th scope="col" width="120">Đơn giá</th>
+        <th scope="col" class="text-right" width="200"> </th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var cart in ViewBag.cartList)
+        {
+        <tr>
+            <td>
+                <figure class="itemside">
+                    <div class="aside"><img src="@cart.Product.ImageUrl" class="img-sm"></div>
+                    <figcaption class="info">
+                        <a href="#" class="title text-dark">@cart.Product.Name</a>
+                        @* <p class="text-muted small">Size: XL, Color: blue, <br> Brand: Gucci</p> *@
+                    </figcaption>
+                </figure>
+            </td>
+            <td> 
+                <select class="form-control">
+                    <option>1</option>
+                    <option>2</option>	
+                    <option>3</option>	
+                    <option>4</option>	
+                </select> 
+            </td>
+            <td> 
+                <div class="price-wrap"> 
+                    <var class="price">@cart.Product.Price ₫</var> 
+                    <small class="text-muted"> @cart.Product.Price ₫ mỗi cái </small> 
+                </div> <!-- price-wrap .// -->
+            </td>
+            <td class="text-right"> 
+            <a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a> 
+            <a href="" class="btn btn-light"> Xóa</a>
+            </td>
+        </tr>
+        }
+        </tbody>
+        </table>
+
+        <div class="card-body border-top">
+            <a href="#" class="btn btn-primary float-md-right"> Mua Hàng <i class="fa fa-chevron-right"></i> </a>
+            <a href="#" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Tiếp tục mua sắm </a>
+        </div>	
+        </div> <!-- card.// -->
+	</main> <!-- col.// -->
+	<aside class="col-md-3">
+		<div class="card mb-3">
+			<div class="card-body">
+			<form>
+				<div class="form-group">
+					<label>Sử dụng voucher?</label>
+					<div class="input-group">
+						<input type="text" class="form-control" name="" placeholder="Mã voucher">
+						<span class="input-group-append"> 
+							<button class="btn btn-primary">Áp mã</button>
+						</span>
+					</div>
+				</div>
+			</form>
+			</div> <!-- card-body.// -->
+		</div>  <!-- card .// -->
+		<div class="card">
+			<div class="card-body">
+					<dl class="dlist-align">
+					  <dt>Tổng giá:</dt>
+					  <dd class="text-right">100 ₫</dd>
+					</dl>
+					<dl class="dlist-align">
+					  <dt>Discount:</dt>
+					  <dd class="text-right">0 ₫</dd>
+					</dl>
+					<dl class="dlist-align">
+					  <dt>Total:</dt>
+					  <dd class="text-right  h5"><strong>100 ₫</strong></dd>
+					</dl>
+					<hr>
+					<p class="text-center mb-3">
+						<img src="images/misc/payments.png" height="26">
+					</p>
+					
+			</div> <!-- card-body.// -->
+		</div>  <!-- card .// -->
+	</aside> <!-- col.// -->
+</div>
+
+</div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fhF2fBQ4wdl6RcAybrpYI2REZupUXPlJ0lTsdbuZL4o=",
+  "Hash": "1wi3T8YKFUhCtFP9xXztdn/FwlXbwt+3WdFxuJsOhCs=",
   "Source": "Marketplace",
   "BasePath": "_content/Marketplace",
   "Mode": "Default",
@@ -2072,6 +2072,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\logo.svg"
+    },
+    {
+      "Identity": "C:\\Users\\huuti\\OneDrive\\Desktop\\Marketplace\\wwwroot\\images\\LogoTDH.png",
+      "SourceId": "Marketplace",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\huuti\\OneDrive\\Desktop\\Marketplace\\wwwroot\\",
+      "BasePath": "_content/Marketplace",
+      "RelativePath": "images/LogoTDH.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\LogoTDH.png"
+    },
+    {
+      "Identity": "C:\\Users\\huuti\\OneDrive\\Desktop\\Marketplace\\wwwroot\\images\\logoTDHmall.png",
+      "SourceId": "Marketplace",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\huuti\\OneDrive\\Desktop\\Marketplace\\wwwroot\\",
+      "BasePath": "_content/Marketplace",
+      "RelativePath": "images/logoTDHmall.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\logoTDHmall.png"
     },
     {
       "Identity": "C:\\Users\\huuti\\OneDrive\\Desktop\\Marketplace\\wwwroot\\images\\misc\\appstore.png",

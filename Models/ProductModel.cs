@@ -19,8 +19,8 @@ namespace Marketplace.Models
         public List<ReviewModel> Reviews { get; set; }
         public List<ImageModel> Images { get; set; }
 
-        public int BrandId { get; set; }
+        public int? BrandId { get; set; }
 
-        public virtual Brand Brand { get; set; }
+        public Brand Brand { get; set; }
     }
 }

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Marketplace.Migrations
 {
     [DbContext(typeof(MarketplaceDbContext))]
-    [Migration("20230720142418_InitialCreate")]
+    [Migration("20230721165723_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -80,6 +80,21 @@ namespace Marketplace.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Marketplace.Models.Brand", b =>
+                {
+                    b.Property<int>("BrandId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("BrandName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("BrandId");
+
+                    b.ToTable("Brand");
+                });
+
             modelBuilder.Entity("Marketplace.Models.CartItemModel", b =>
                 {
                     b.Property<int>("CartItemId")
@@ -102,6 +117,29 @@ namespace Marketplace.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("CartItem");
+
+                    b.HasData(
+                        new
+                        {
+                            CartItemId = 1,
+                            CartId = 1,
+                            ProductId = 1,
+                            Quantity = 2
+                        },
+                        new
+                        {
+                            CartItemId = 2,
+                            CartId = 1,
+                            ProductId = 2,
+                            Quantity = 1
+                        },
+                        new
+                        {
+                            CartItemId = 3,
+                            CartId = 2,
+                            ProductId = 3,
+                            Quantity = 3
+                        });
                 });
 
             modelBuilder.Entity("Marketplace.Models.CartModel", b =>
@@ -124,6 +162,22 @@ namespace Marketplace.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Cart");
+
+                    b.HasData(
+                        new
+                        {
+                            CartId = 1,
+                            CreatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3192),
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 1
+                        },
+                        new
+                        {
+                            CartId = 2,
+                            CreatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3193),
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 2
+                        });
                 });
 
             modelBuilder.Entity("Marketplace.Models.CategoryModel", b =>
@@ -218,6 +272,9 @@ namespace Marketplace.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int?>("BrandId")
+                        .HasColumnType("int");
+
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -247,6 +304,8 @@ namespace Marketplace.Migrations
 
                     b.HasKey("ProductId");
 
+                    b.HasIndex("BrandId");
+
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Product");
@@ -256,25 +315,37 @@ namespace Marketplace.Migrations
                         {
                             ProductId = 1,
                             CategoryId = 1,
-                            CreatedAt = new DateTime(2023, 7, 20, 21, 24, 18, 319, DateTimeKind.Local).AddTicks(7565),
+                            CreatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3139),
                             Description = "Mô tả sản phẩm 1",
                             ImageUrl = "/images/items/1.jpg",
                             Name = "Sản phẩm 1",
                             Price = 100f,
                             SellerId = 1,
-                            UpdatedAt = new DateTime(2023, 7, 20, 21, 24, 18, 319, DateTimeKind.Local).AddTicks(7565)
+                            UpdatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3140)
                         },
                         new
                         {
                             ProductId = 2,
                             CategoryId = 2,
-                            CreatedAt = new DateTime(2023, 7, 20, 21, 24, 18, 319, DateTimeKind.Local).AddTicks(7567),
+                            CreatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3141),
                             Description = "Mô tả sản phẩm 2",
                             ImageUrl = "/images/items/2.jpg",
                             Name = "Sản phẩm 2",
                             Price = 200f,
                             SellerId = 2,
-                            UpdatedAt = new DateTime(2023, 7, 20, 21, 24, 18, 319, DateTimeKind.Local).AddTicks(7568)
+                            UpdatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3141)
+                        },
+                        new
+                        {
+                            ProductId = 3,
+                            CategoryId = 2,
+                            CreatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3142),
+                            Description = "Mô tả sản phẩm 3",
+                            ImageUrl = "/images/items/3.jpg",
+                            Name = "Sản phẩm 3",
+                            Price = 300f,
+                            SellerId = 2,
+                            UpdatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3143)
                         });
                 });
 
@@ -313,7 +384,7 @@ namespace Marketplace.Migrations
                         {
                             ReviewId = 1,
                             Comment = "Sản phẩm tuyệt vời!",
-                            CreatedAt = new DateTime(2023, 7, 20, 21, 24, 18, 319, DateTimeKind.Local).AddTicks(7592),
+                            CreatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3162),
                             ProductId = 1,
                             Rating = 5,
                             UserId = 2
@@ -322,7 +393,7 @@ namespace Marketplace.Migrations
                         {
                             ReviewId = 2,
                             Comment = "Sản phẩm tốt, nhưng có thể cải thiện hơn",
-                            CreatedAt = new DateTime(2023, 7, 20, 21, 24, 18, 319, DateTimeKind.Local).AddTicks(7593),
+                            CreatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3163),
                             ProductId = 2,
                             Rating = 4,
                             UserId = 1
@@ -426,34 +497,34 @@ namespace Marketplace.Migrations
                         new
                         {
                             UserId = 1,
-                            CreatedAt = new DateTime(2023, 7, 20, 21, 24, 18, 319, DateTimeKind.Local).AddTicks(7504),
+                            CreatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3112),
                             Email = "huutinh@example.com",
                             FullName = "Nguyễn Hữu Tình",
                             ImageUrl = "/images/avatars/avatar1.jpg",
                             Password = "password123",
-                            UpdatedAt = new DateTime(2023, 7, 20, 21, 24, 18, 319, DateTimeKind.Local).AddTicks(7511),
+                            UpdatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3123),
                             Username = "Nguyễn Hữu Tình"
                         },
                         new
                         {
                             UserId = 2,
-                            CreatedAt = new DateTime(2023, 7, 20, 21, 24, 18, 319, DateTimeKind.Local).AddTicks(7512),
+                            CreatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3124),
                             Email = "kieudiem@example.com",
                             FullName = "Kiều Diễm",
                             ImageUrl = "/images/avatars/avatar2.jpg",
                             Password = "password456",
-                            UpdatedAt = new DateTime(2023, 7, 20, 21, 24, 18, 319, DateTimeKind.Local).AddTicks(7513),
+                            UpdatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3125),
                             Username = "Kiều Diễm"
                         },
                         new
                         {
                             UserId = 3,
-                            CreatedAt = new DateTime(2023, 7, 20, 21, 24, 18, 319, DateTimeKind.Local).AddTicks(7550),
+                            CreatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3125),
                             Email = "maihoa@example.com",
                             FullName = "Mai Hoa",
                             ImageUrl = "/images/avatars/avatar3.jpg",
                             Password = "password456",
-                            UpdatedAt = new DateTime(2023, 7, 20, 21, 24, 18, 319, DateTimeKind.Local).AddTicks(7550),
+                            UpdatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3126),
                             Username = "Mai Hoa"
                         });
                 });
@@ -512,11 +583,17 @@ namespace Marketplace.Migrations
 
             modelBuilder.Entity("Marketplace.Models.ProductModel", b =>
                 {
+                    b.HasOne("Marketplace.Models.Brand", "Brand")
+                        .WithMany("CartItems")
+                        .HasForeignKey("BrandId");
+
                     b.HasOne("Marketplace.Models.CategoryModel", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Brand");
 
                     b.Navigation("Category");
                 });
@@ -565,6 +642,11 @@ namespace Marketplace.Migrations
                     b.Navigation("Product");
 
                     b.Navigation("Seller");
+                });
+
+            modelBuilder.Entity("Marketplace.Models.Brand", b =>
+                {
+                    b.Navigation("CartItems");
                 });
 
             modelBuilder.Entity("Marketplace.Models.CartModel", b =>

@@ -18,6 +18,21 @@ namespace Marketplace.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "Brand",
+                columns: table => new
+                {
+                    BrandId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    BrandName = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Brand", x => x.BrandId);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "Category",
                 columns: table => new
                 {
@@ -73,11 +88,17 @@ namespace Marketplace.Migrations
                     ImageUrl = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                    UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    BrandId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Product", x => x.ProductId);
+                    table.ForeignKey(
+                        name: "FK_Product_Brand_BrandId",
+                        column: x => x.BrandId,
+                        principalTable: "Brand",
+                        principalColumn: "BrandId");
                     table.ForeignKey(
                         name: "FK_Product_Category_CategoryId",
                         column: x => x.CategoryId,
@@ -276,9 +297,9 @@ namespace Marketplace.Migrations
                 columns: new[] { "UserId", "CreatedAt", "Email", "FullName", "ImageUrl", "Password", "UpdatedAt", "Username" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 7, 20, 21, 24, 18, 319, DateTimeKind.Local).AddTicks(7504), "huutinh@example.com", "Nguyễn Hữu Tình", "/images/avatars/avatar1.jpg", "password123", new DateTime(2023, 7, 20, 21, 24, 18, 319, DateTimeKind.Local).AddTicks(7511), "Nguyễn Hữu Tình" },
-                    { 2, new DateTime(2023, 7, 20, 21, 24, 18, 319, DateTimeKind.Local).AddTicks(7512), "kieudiem@example.com", "Kiều Diễm", "/images/avatars/avatar2.jpg", "password456", new DateTime(2023, 7, 20, 21, 24, 18, 319, DateTimeKind.Local).AddTicks(7513), "Kiều Diễm" },
-                    { 3, new DateTime(2023, 7, 20, 21, 24, 18, 319, DateTimeKind.Local).AddTicks(7550), "maihoa@example.com", "Mai Hoa", "/images/avatars/avatar3.jpg", "password456", new DateTime(2023, 7, 20, 21, 24, 18, 319, DateTimeKind.Local).AddTicks(7550), "Mai Hoa" }
+                    { 1, new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3112), "huutinh@example.com", "Nguyễn Hữu Tình", "/images/avatars/avatar1.jpg", "password123", new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3123), "Nguyễn Hữu Tình" },
+                    { 2, new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3124), "kieudiem@example.com", "Kiều Diễm", "/images/avatars/avatar2.jpg", "password456", new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3125), "Kiều Diễm" },
+                    { 3, new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3125), "maihoa@example.com", "Mai Hoa", "/images/avatars/avatar3.jpg", "password456", new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3126), "Mai Hoa" }
                 });
 
             migrationBuilder.InsertData(
@@ -291,12 +312,32 @@ namespace Marketplace.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Product",
-                columns: new[] { "ProductId", "CategoryId", "CreatedAt", "Description", "ImageUrl", "Name", "Price", "SellerId", "UpdatedAt" },
+                table: "Cart",
+                columns: new[] { "CartId", "CreatedAt", "UpdatedAt", "UserId" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2023, 7, 20, 21, 24, 18, 319, DateTimeKind.Local).AddTicks(7565), "Mô tả sản phẩm 1", "/images/items/1.jpg", "Sản phẩm 1", 100f, 1, new DateTime(2023, 7, 20, 21, 24, 18, 319, DateTimeKind.Local).AddTicks(7565) },
-                    { 2, 2, new DateTime(2023, 7, 20, 21, 24, 18, 319, DateTimeKind.Local).AddTicks(7567), "Mô tả sản phẩm 2", "/images/items/2.jpg", "Sản phẩm 2", 200f, 2, new DateTime(2023, 7, 20, 21, 24, 18, 319, DateTimeKind.Local).AddTicks(7568) }
+                    { 1, new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3192), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 2, new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3193), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Product",
+                columns: new[] { "ProductId", "BrandId", "CategoryId", "CreatedAt", "Description", "ImageUrl", "Name", "Price", "SellerId", "UpdatedAt" },
+                values: new object[,]
+                {
+                    { 1, null, 1, new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3139), "Mô tả sản phẩm 1", "/images/items/1.jpg", "Sản phẩm 1", 100f, 1, new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3140) },
+                    { 2, null, 2, new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3141), "Mô tả sản phẩm 2", "/images/items/2.jpg", "Sản phẩm 2", 200f, 2, new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3141) },
+                    { 3, null, 2, new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3142), "Mô tả sản phẩm 3", "/images/items/3.jpg", "Sản phẩm 3", 300f, 2, new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3143) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "CartItem",
+                columns: new[] { "CartItemId", "CartId", "ProductId", "Quantity" },
+                values: new object[,]
+                {
+                    { 1, 1, 1, 2 },
+                    { 2, 1, 2, 1 },
+                    { 3, 2, 3, 3 }
                 });
 
             migrationBuilder.InsertData(
@@ -313,8 +354,8 @@ namespace Marketplace.Migrations
                 columns: new[] { "ReviewId", "Comment", "CreatedAt", "ProductId", "Rating", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "Sản phẩm tuyệt vời!", new DateTime(2023, 7, 20, 21, 24, 18, 319, DateTimeKind.Local).AddTicks(7592), 1, 5, 2 },
-                    { 2, "Sản phẩm tốt, nhưng có thể cải thiện hơn", new DateTime(2023, 7, 20, 21, 24, 18, 319, DateTimeKind.Local).AddTicks(7593), 2, 4, 1 }
+                    { 1, "Sản phẩm tuyệt vời!", new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3162), 1, 5, 2 },
+                    { 2, "Sản phẩm tốt, nhưng có thể cải thiện hơn", new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3163), 2, 4, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -350,6 +391,11 @@ namespace Marketplace.Migrations
                 name: "IX_Image_ProductId",
                 table: "Image",
                 column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Product_BrandId",
+                table: "Product",
+                column: "BrandId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Product_CategoryId",
@@ -408,6 +454,9 @@ namespace Marketplace.Migrations
 
             migrationBuilder.DropTable(
                 name: "User");
+
+            migrationBuilder.DropTable(
+                name: "Brand");
 
             migrationBuilder.DropTable(
                 name: "Category");

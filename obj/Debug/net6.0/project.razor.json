@@ -18374,6 +18374,11 @@
   "RootNamespace": "Marketplace",
   "Documents": [
     {
+      "FilePath": "c:\\Users\\huuti\\OneDrive\\Desktop\\Marketplace\\Views\\ShoppingCart\\Index.cshtml",
+      "TargetPath": "Views\\ShoppingCart\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\huuti\\OneDrive\\Desktop\\Marketplace\\Views\\Home\\_Recommended.cshtml",
       "TargetPath": "Views\\Home\\_Recommended.cshtml",
       "FileKind": "mvc"
@@ -18386,11 +18391,6 @@
     {
       "FilePath": "c:\\Users\\huuti\\OneDrive\\Desktop\\Marketplace\\Views\\_ViewImports.cshtml",
       "TargetPath": "Views\\_ViewImports.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\huuti\\OneDrive\\Desktop\\Marketplace\\Views\\Home\\Privacy.cshtml",
-      "TargetPath": "Views\\Home\\Privacy.cshtml",
       "FileKind": "mvc"
     },
     {

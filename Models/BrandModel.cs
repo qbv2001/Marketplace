@@ -1,20 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-
-#nullable disable
-
 namespace Marketplace.Models
 {
     public partial class Brand
     {
-        public Brand()
-        {
-            Products = new HashSet<ProductModel>();
-        }
-
+        [Key]
         public int BrandId { get; set; }
         public string BrandName { get; set; }
 
-        public virtual ICollection<ProductModel> Products { get; set; }
+        public List<ProductModel> CartItems { get; set; }
     }
 }

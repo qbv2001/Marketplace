@@ -62,7 +62,9 @@ namespace Marketplace.Data
             // Thêm dữ liệu mẫu cho bảng Products
             modelBuilder.Entity<ProductModel>().HasData(
                 new ProductModel { ProductId = 1, SellerId = 1, CategoryId = 1, Name = "Sản phẩm 1", Description = "Mô tả sản phẩm 1", Price = 100, ImageUrl = "/images/items/1.jpg", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now },
-                new ProductModel { ProductId = 2, SellerId = 2, CategoryId = 2, Name = "Sản phẩm 2", Description = "Mô tả sản phẩm 2", Price = 200, ImageUrl = "/images/items/2.jpg", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now }
+                new ProductModel { ProductId = 2, SellerId = 2, CategoryId = 2, Name = "Sản phẩm 2", Description = "Mô tả sản phẩm 2", Price = 200, ImageUrl = "/images/items/2.jpg", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now },
+                new ProductModel { ProductId = 3, SellerId = 2, CategoryId = 2, Name = "Sản phẩm 3", Description = "Mô tả sản phẩm 3", Price = 300, ImageUrl = "/images/items/3.jpg", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now }
+
     );
 
             // Thêm dữ liệu mẫu cho bảng Transactions
@@ -88,6 +90,19 @@ namespace Marketplace.Data
             modelBuilder.Entity<ImageModel>().HasData(
                 new ImageModel { ImageId = 1, ProductId = 1, ImageUrl = "/images/items/1.jpg" },
                 new ImageModel { ImageId = 2, ProductId = 2, ImageUrl = "/images/items/2.jpg" }
+            );
+
+            // Tạo dữ liệu mẫu cho bảng Cart
+            modelBuilder.Entity<CartModel>().HasData(
+                new CartModel { CartId = 1, CreatedAt = DateTime.Now, UserId = 1 },
+                new CartModel { CartId = 2, CreatedAt = DateTime.Now, UserId = 2 }
+            );
+
+            // Tạo dữ liệu mẫu cho bảng CartItem
+            modelBuilder.Entity<CartItemModel>().HasData(
+                new CartItemModel { CartItemId = 1, CartId = 1, ProductId = 1, Quantity = 2 },
+                new CartItemModel { CartItemId = 2, CartId = 1, ProductId = 2, Quantity = 1},
+                new CartItemModel { CartItemId = 3, CartId = 2, ProductId = 3, Quantity = 3}
             );
 
             base.OnModelCreating(modelBuilder);

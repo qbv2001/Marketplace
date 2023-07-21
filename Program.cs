@@ -1,4 +1,5 @@
 using Marketplace.Data;
+using Marketplace.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,9 @@ builder.Services.AddControllersWithViews();
 //MySQL DB Conn
 string _GetConnStringName = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContextPool<MarketplaceDbContext>(options => options.UseMySql(_GetConnStringName, ServerVersion.AutoDetect(_GetConnStringName)));
+
+// Đăng ký dịch vụ CartService
+builder.Services.AddScoped<CartService>();
 
 var app = builder.Build();
 
