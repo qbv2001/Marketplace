@@ -1,0 +1,25 @@
+<!-- =============== SECTION ITEMS =============== -->
+<section  class="padding-bottom-sm">
+
+<header class="section-heading heading-line">
+	<h4 class="title-section text-uppercase">Gợi ý hôm nay</h4>
+</header>
+
+<div class="row row-sm" id="productContainer">
+    @foreach (var item in ViewBag.productList)
+        {
+            <div class="col-xl-2 col-lg-3 col-md-4 col-6">
+                <div class="card card-sm card-product-grid">
+                    <a href="detailproduct?spid=@item.ProductId" class="img-wrap"> <img src="@item.ImageUrl"> </a>
+                    <figcaption class="info-wrap">
+                        <a href="detailproduct" class="title">@item.Name</a>
+                        <div class="price mt-1">@item.Price đ</div>
+                    </figcaption>
+                </div>
+            </div>
+        }
+</div> <!-- row.// -->
+<button class="btn btn-light  w-100 d-block mb-4 font-weight-bold" type="button" id="button-plus"> Xem thêm </button>
+</section>
+<!-- =============== SECTION ITEMS .//END =============== -->
+<script src="~/js/loadmore.js" data-loadmoreurl="@Url.Action("LoadMoreProducts", "Home")"></script>
