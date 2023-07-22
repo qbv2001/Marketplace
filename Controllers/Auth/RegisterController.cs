@@ -25,13 +25,13 @@ public class RegisterController : Controller
     }
 
     [HttpPost]
-    public IActionResult Register(string fullName, string email, string phoneNumber, string password, string confirmPassword)
+    public IActionResult Register(string fullName, string username, string email, string phoneNumber, string password, string confirmPassword)
     {
         // Kiểm tra các thông tin đăng ký hợp lệ
-        if (!IsValidRegistrationData(fullName, email, phoneNumber, password, confirmPassword))
+        if (!IsValidRegistrationData(fullName, username, email, phoneNumber, password, confirmPassword))
         {
             ModelState.AddModelError(string.Empty, "Thông tin đăng ký không hợp lệ.");
-            return View();
+            return RedirectToAction("Index", "Register");
         }
 
          // Kiểm tra xem email đã tồn tại trong cơ sở dữ liệu chưa
@@ -39,7 +39,15 @@ public class RegisterController : Controller
         if (existingUser != null)
         {
             ModelState.AddModelError(string.Empty, "Email đã tồn tại.");
-            return View();
+            return RedirectToAction("Index", "Register");
+        }
+
+        // Kiểm tra xem username đã tồn tại trong cơ sở dữ liệu chưa
+        var existingUserName = _dbContext.User.FirstOrDefault(u => u.Username == username);
+        if (existingUserName != null)
+        {
+            ModelState.AddModelError(string.Empty, "Email đã tồn tại.");
+            return RedirectToAction("Index", "Register");
         }
 
         // Kiểm tra xem số điện thoại đã tồn tại trong cơ sở dữ liệu chưa
@@ -47,13 +55,13 @@ public class RegisterController : Controller
         if (existingUserPhone != null)
         {
             ModelState.AddModelError(string.Empty, "Số điện thoại đã tồn tại.");
-            return View();
+            return RedirectToAction("Index", "Register");
         }
 
         // Tạo tài khoản mới
         var newUser = new UserModel
         {
-            Username = email, // Trong trường hợp này, sử dụng email làm tên đăng nhập
+            Username = username, // Trong trường hợp này, sử dụng email làm tên đăng nhập
             FullName = fullName,
             Email = email,
             PhoneNumber = phoneNumber,
@@ -69,13 +77,13 @@ public class RegisterController : Controller
         _dbContext.SaveChanges();
 
         // Chuyển hướng đến trang đăng nhập hoặc trang chủ sau khi đăng ký thành công
-        return RedirectToAction("Login", "Index");
+        return RedirectToAction("Index", "Login");
     }
 
-    private bool IsValidRegistrationData(string fullName, string email, string phoneNumber, string password, string confirmPassword)
+    private bool IsValidRegistrationData(string fullName, string username, string email, string phoneNumber, string password, string confirmPassword)
     {
         // Kiểm tra tính hợp lệ của thông tin đăng ký
-        if (string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(phoneNumber)
+        if (string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(username) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(phoneNumber)
             || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(confirmPassword))
         {
             return false;
