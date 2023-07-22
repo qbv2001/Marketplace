@@ -164,14 +164,14 @@ namespace Marketplace.Migrations
                         new
                         {
                             CartId = 1,
-                            CreatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3192),
+                            CreatedAt = new DateTime(2023, 7, 22, 15, 55, 24, 255, DateTimeKind.Local).AddTicks(114),
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 1
                         },
                         new
                         {
                             CartId = 2,
-                            CreatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3193),
+                            CreatedAt = new DateTime(2023, 7, 22, 15, 55, 24, 255, DateTimeKind.Local).AddTicks(115),
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 2
                         });
@@ -312,37 +312,37 @@ namespace Marketplace.Migrations
                         {
                             ProductId = 1,
                             CategoryId = 1,
-                            CreatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3139),
+                            CreatedAt = new DateTime(2023, 7, 22, 15, 55, 24, 254, DateTimeKind.Local).AddTicks(9989),
                             Description = "Mô tả sản phẩm 1",
                             ImageUrl = "/images/items/1.jpg",
                             Name = "Sản phẩm 1",
                             Price = 100f,
                             SellerId = 1,
-                            UpdatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3140)
+                            UpdatedAt = new DateTime(2023, 7, 22, 15, 55, 24, 254, DateTimeKind.Local).AddTicks(9990)
                         },
                         new
                         {
                             ProductId = 2,
                             CategoryId = 2,
-                            CreatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3141),
+                            CreatedAt = new DateTime(2023, 7, 22, 15, 55, 24, 254, DateTimeKind.Local).AddTicks(9992),
                             Description = "Mô tả sản phẩm 2",
                             ImageUrl = "/images/items/2.jpg",
                             Name = "Sản phẩm 2",
                             Price = 200f,
                             SellerId = 2,
-                            UpdatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3141)
+                            UpdatedAt = new DateTime(2023, 7, 22, 15, 55, 24, 254, DateTimeKind.Local).AddTicks(9993)
                         },
                         new
                         {
                             ProductId = 3,
                             CategoryId = 2,
-                            CreatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3142),
+                            CreatedAt = new DateTime(2023, 7, 22, 15, 55, 24, 254, DateTimeKind.Local).AddTicks(9994),
                             Description = "Mô tả sản phẩm 3",
                             ImageUrl = "/images/items/3.jpg",
                             Name = "Sản phẩm 3",
                             Price = 300f,
                             SellerId = 2,
-                            UpdatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3143)
+                            UpdatedAt = new DateTime(2023, 7, 22, 15, 55, 24, 254, DateTimeKind.Local).AddTicks(9995)
                         });
                 });
 
@@ -381,7 +381,7 @@ namespace Marketplace.Migrations
                         {
                             ReviewId = 1,
                             Comment = "Sản phẩm tuyệt vời!",
-                            CreatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3162),
+                            CreatedAt = new DateTime(2023, 7, 22, 15, 55, 24, 255, DateTimeKind.Local).AddTicks(48),
                             ProductId = 1,
                             Rating = 5,
                             UserId = 2
@@ -390,7 +390,7 @@ namespace Marketplace.Migrations
                         {
                             ReviewId = 2,
                             Comment = "Sản phẩm tốt, nhưng có thể cải thiện hơn",
-                            CreatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3163),
+                            CreatedAt = new DateTime(2023, 7, 22, 15, 55, 24, 255, DateTimeKind.Local).AddTicks(50),
                             ProductId = 2,
                             Rating = 4,
                             UserId = 1
@@ -479,6 +479,10 @@ namespace Marketplace.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
@@ -494,34 +498,37 @@ namespace Marketplace.Migrations
                         new
                         {
                             UserId = 1,
-                            CreatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3112),
+                            CreatedAt = new DateTime(2023, 7, 22, 15, 55, 24, 254, DateTimeKind.Local).AddTicks(9747),
                             Email = "huutinh@example.com",
                             FullName = "Nguyễn Hữu Tình",
                             ImageUrl = "/images/avatars/avatar1.jpg",
-                            Password = "password123",
-                            UpdatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3123),
+                            Password = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+                            PhoneNumber = "0835133683",
+                            UpdatedAt = new DateTime(2023, 7, 22, 15, 55, 24, 254, DateTimeKind.Local).AddTicks(9761),
                             Username = "Nguyễn Hữu Tình"
                         },
                         new
                         {
                             UserId = 2,
-                            CreatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3124),
+                            CreatedAt = new DateTime(2023, 7, 22, 15, 55, 24, 254, DateTimeKind.Local).AddTicks(9819),
                             Email = "kieudiem@example.com",
                             FullName = "Kiều Diễm",
                             ImageUrl = "/images/avatars/avatar2.jpg",
-                            Password = "password456",
-                            UpdatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3125),
+                            Password = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+                            PhoneNumber = "0835133683",
+                            UpdatedAt = new DateTime(2023, 7, 22, 15, 55, 24, 254, DateTimeKind.Local).AddTicks(9819),
                             Username = "Kiều Diễm"
                         },
                         new
                         {
                             UserId = 3,
-                            CreatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3125),
+                            CreatedAt = new DateTime(2023, 7, 22, 15, 55, 24, 254, DateTimeKind.Local).AddTicks(9940),
                             Email = "maihoa@example.com",
                             FullName = "Mai Hoa",
                             ImageUrl = "/images/avatars/avatar3.jpg",
-                            Password = "password456",
-                            UpdatedAt = new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3126),
+                            Password = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+                            PhoneNumber = "0835133683",
+                            UpdatedAt = new DateTime(2023, 7, 22, 15, 55, 24, 254, DateTimeKind.Local).AddTicks(9941),
                             Username = "Mai Hoa"
                         });
                 });

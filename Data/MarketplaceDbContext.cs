@@ -1,3 +1,5 @@
+using System.Security.Cryptography;
+using System.Text;
 using Marketplace.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -54,9 +56,9 @@ namespace Marketplace.Data
 
             // Thêm dữ liệu mẫu cho bảng Users
             modelBuilder.Entity<UserModel>().HasData(
-                new UserModel { UserId = 1, Username = "Nguyễn Hữu Tình", Password = "password123", Email = "huutinh@example.com", FullName = "Nguyễn Hữu Tình", ImageUrl = "/images/avatars/avatar1.jpg", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now },
-                new UserModel { UserId = 2, Username = "Kiều Diễm", Password = "password456", Email = "kieudiem@example.com", FullName = "Kiều Diễm", ImageUrl = "/images/avatars/avatar2.jpg", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now },
-                new UserModel { UserId = 3, Username = "Mai Hoa", Password = "password456", Email = "maihoa@example.com", FullName = "Mai Hoa", ImageUrl = "/images/avatars/avatar3.jpg", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now }
+                new UserModel { UserId = 1, Username = "huutinh", Password = HashPassword("123456"), Email = "huutinh@example.com", FullName = "Nguyễn Hữu Tình", PhoneNumber = "0835133683",ImageUrl = "/images/avatars/avatar1.jpg", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now },
+                new UserModel { UserId = 2, Username = "kieudiem", Password = HashPassword("123456"), Email = "kieudiem@example.com", FullName = "Kiều Diễm", PhoneNumber = "0835133683", ImageUrl = "/images/avatars/avatar2.jpg", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now },
+                new UserModel { UserId = 3, Username = "maihoa", Password = HashPassword("123456"), Email = "maihoa@example.com", FullName = "Mai Hoa", PhoneNumber = "0835133683", ImageUrl = "/images/avatars/avatar3.jpg", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now }
             );
 
             // Thêm dữ liệu mẫu cho bảng Products
@@ -106,6 +108,26 @@ namespace Marketplace.Data
             );
 
             base.OnModelCreating(modelBuilder);
+        }
+
+        public static string HashPassword(string password)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                // Chuyển đổi mật khẩu thành mảng byte
+                byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
+
+                // Mã hóa mật khẩu bằng SHA256
+                byte[] hashedBytes = sha256.ComputeHash(passwordBytes);
+
+                // Chuyển đổi mảng byte thành chuỗi hexa
+                StringBuilder sb = new StringBuilder();
+                foreach (byte b in hashedBytes)
+                {
+                    sb.Append(b.ToString("x2"));
+                }
+                return sb.ToString();
+            }
         }
         
     }

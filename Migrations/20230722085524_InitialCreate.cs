@@ -55,6 +55,8 @@ namespace Marketplace.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Username = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    PhoneNumber = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     Password = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Email = table.Column<string>(type: "longtext", nullable: false)
@@ -294,12 +296,12 @@ namespace Marketplace.Migrations
 
             migrationBuilder.InsertData(
                 table: "User",
-                columns: new[] { "UserId", "CreatedAt", "Email", "FullName", "ImageUrl", "Password", "UpdatedAt", "Username" },
+                columns: new[] { "UserId", "CreatedAt", "Email", "FullName", "ImageUrl", "Password", "PhoneNumber", "UpdatedAt", "Username" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3112), "huutinh@example.com", "Nguyễn Hữu Tình", "/images/avatars/avatar1.jpg", "password123", new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3123), "Nguyễn Hữu Tình" },
-                    { 2, new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3124), "kieudiem@example.com", "Kiều Diễm", "/images/avatars/avatar2.jpg", "password456", new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3125), "Kiều Diễm" },
-                    { 3, new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3125), "maihoa@example.com", "Mai Hoa", "/images/avatars/avatar3.jpg", "password456", new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3126), "Mai Hoa" }
+                    { 1, new DateTime(2023, 7, 22, 15, 55, 24, 254, DateTimeKind.Local).AddTicks(9747), "huutinh@example.com", "Nguyễn Hữu Tình", "/images/avatars/avatar1.jpg", "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", "0835133683", new DateTime(2023, 7, 22, 15, 55, 24, 254, DateTimeKind.Local).AddTicks(9761), "Nguyễn Hữu Tình" },
+                    { 2, new DateTime(2023, 7, 22, 15, 55, 24, 254, DateTimeKind.Local).AddTicks(9819), "kieudiem@example.com", "Kiều Diễm", "/images/avatars/avatar2.jpg", "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", "0835133683", new DateTime(2023, 7, 22, 15, 55, 24, 254, DateTimeKind.Local).AddTicks(9819), "Kiều Diễm" },
+                    { 3, new DateTime(2023, 7, 22, 15, 55, 24, 254, DateTimeKind.Local).AddTicks(9940), "maihoa@example.com", "Mai Hoa", "/images/avatars/avatar3.jpg", "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", "0835133683", new DateTime(2023, 7, 22, 15, 55, 24, 254, DateTimeKind.Local).AddTicks(9941), "Mai Hoa" }
                 });
 
             migrationBuilder.InsertData(
@@ -316,8 +318,8 @@ namespace Marketplace.Migrations
                 columns: new[] { "CartId", "CreatedAt", "UpdatedAt", "UserId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3192), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
-                    { 2, new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3193), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 }
+                    { 1, new DateTime(2023, 7, 22, 15, 55, 24, 255, DateTimeKind.Local).AddTicks(114), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 2, new DateTime(2023, 7, 22, 15, 55, 24, 255, DateTimeKind.Local).AddTicks(115), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -325,9 +327,9 @@ namespace Marketplace.Migrations
                 columns: new[] { "ProductId", "BrandId", "CategoryId", "CreatedAt", "Description", "ImageUrl", "Name", "Price", "SellerId", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 1, null, 1, new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3139), "Mô tả sản phẩm 1", "/images/items/1.jpg", "Sản phẩm 1", 100f, 1, new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3140) },
-                    { 2, null, 2, new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3141), "Mô tả sản phẩm 2", "/images/items/2.jpg", "Sản phẩm 2", 200f, 2, new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3141) },
-                    { 3, null, 2, new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3142), "Mô tả sản phẩm 3", "/images/items/3.jpg", "Sản phẩm 3", 300f, 2, new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3143) }
+                    { 1, null, 1, new DateTime(2023, 7, 22, 15, 55, 24, 254, DateTimeKind.Local).AddTicks(9989), "Mô tả sản phẩm 1", "/images/items/1.jpg", "Sản phẩm 1", 100f, 1, new DateTime(2023, 7, 22, 15, 55, 24, 254, DateTimeKind.Local).AddTicks(9990) },
+                    { 2, null, 2, new DateTime(2023, 7, 22, 15, 55, 24, 254, DateTimeKind.Local).AddTicks(9992), "Mô tả sản phẩm 2", "/images/items/2.jpg", "Sản phẩm 2", 200f, 2, new DateTime(2023, 7, 22, 15, 55, 24, 254, DateTimeKind.Local).AddTicks(9993) },
+                    { 3, null, 2, new DateTime(2023, 7, 22, 15, 55, 24, 254, DateTimeKind.Local).AddTicks(9994), "Mô tả sản phẩm 3", "/images/items/3.jpg", "Sản phẩm 3", 300f, 2, new DateTime(2023, 7, 22, 15, 55, 24, 254, DateTimeKind.Local).AddTicks(9995) }
                 });
 
             migrationBuilder.InsertData(
@@ -354,8 +356,8 @@ namespace Marketplace.Migrations
                 columns: new[] { "ReviewId", "Comment", "CreatedAt", "ProductId", "Rating", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "Sản phẩm tuyệt vời!", new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3162), 1, 5, 2 },
-                    { 2, "Sản phẩm tốt, nhưng có thể cải thiện hơn", new DateTime(2023, 7, 21, 23, 57, 23, 694, DateTimeKind.Local).AddTicks(3163), 2, 4, 1 }
+                    { 1, "Sản phẩm tuyệt vời!", new DateTime(2023, 7, 22, 15, 55, 24, 255, DateTimeKind.Local).AddTicks(48), 1, 5, 2 },
+                    { 2, "Sản phẩm tốt, nhưng có thể cải thiện hơn", new DateTime(2023, 7, 22, 15, 55, 24, 255, DateTimeKind.Local).AddTicks(50), 2, 4, 1 }
                 });
 
             migrationBuilder.InsertData(

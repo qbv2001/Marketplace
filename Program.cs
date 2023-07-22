@@ -11,6 +11,7 @@ builder.Services.AddControllersWithViews();
 string _GetConnStringName = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContextPool<MarketplaceDbContext>(options => options.UseMySql(_GetConnStringName, ServerVersion.AutoDetect(_GetConnStringName)));
 
+builder.Services.AddSession();
 // Đăng ký dịch vụ CartService
 builder.Services.AddScoped<CartService>();
 
@@ -28,6 +29,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseSession();
 
 app.UseAuthorization();
 

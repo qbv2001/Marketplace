@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Marketplace.Models;
 using Marketplace.Data;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Marketplace.Controllers;
 
@@ -67,7 +69,7 @@ public class RegisterController : Controller
         _dbContext.SaveChanges();
 
         // Chuyển hướng đến trang đăng nhập hoặc trang chủ sau khi đăng ký thành công
-        return RedirectToAction("Login", "Account");
+        return RedirectToAction("Login", "Index");
     }
 
     private bool IsValidRegistrationData(string fullName, string email, string phoneNumber, string password, string confirmPassword)
@@ -108,6 +110,26 @@ public class RegisterController : Controller
         catch
         {
             return false;
+        }
+    }
+
+    public static string HashPassword(string password)
+    {
+        using (SHA256 sha256 = SHA256.Create())
+        {
+            // Chuyển đổi mật khẩu thành mảng byte
+            byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
+
+            // Mã hóa mật khẩu bằng SHA256
+            byte[] hashedBytes = sha256.ComputeHash(passwordBytes);
+
+            // Chuyển đổi mảng byte thành chuỗi hexa
+            StringBuilder sb = new StringBuilder();
+            foreach (byte b in hashedBytes)
+            {
+                sb.Append(b.ToString("x2"));
+            }
+            return sb.ToString();
         }
     }
 

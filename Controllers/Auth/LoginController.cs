@@ -26,7 +26,7 @@ public class LoginController : Controller
         // Kiểm tra xem người dùng đã đăng nhập chưa
         if (userId.HasValue)
         {
-            // Người dùng đã đăng nhập
+            // Đăng nhập thành công
             return RedirectToAction("Index", "Home"); // Chuyển hướng đến trang chủ hoặc trang yêu cầu đăng nhập trước đó
         }
         else
@@ -40,24 +40,23 @@ public class LoginController : Controller
     public IActionResult Login(string username, string password)
     {
         // Kiểm tra thông tin đăng nhập
-        var user = _dbContext.User.FirstOrDefault(u => u.Username == username && u.Password == password);
-
+        var user = _dbContext.User.FirstOrDefault(u => u.Username == username);
         if (user != null)
         {
-            // Đăng nhập thành công, lưu thông tin đăng nhập vào session
-            HttpContext.Session.SetInt32("UserId", user.UserId);
-            HttpContext.Session.SetString("Username", user.Username);
+            // Mã hóa mật khẩu nhập vào từ người dùng
+            var hashedPassword = RegisterController.HashPassword(password);
 
-            // Các thông tin khác nếu cần
-
-            return RedirectToAction("Index", "Home"); // Chuyển hướng đến trang chủ hoặc trang yêu cầu đăng nhập trước đó
+            // So sánh với mật khẩu đã lưu trong cơ sở dữ liệu
+            if (user.Password == hashedPassword)
+            {
+                // Đăng nhập thành công, lưu thông tin đăng nhập vào session
+                HttpContext.Session.SetInt32("UserId", user.UserId);
+                HttpContext.Session.SetString("Username", user.Username);
+                return RedirectToAction("Index", "Home");
+            }
         }
-        else
-        {
-            // Đăng nhập không thành công
-            ModelState.AddModelError(string.Empty, "Thông tin đăng nhập không đúng.");
-            return View();
-        }
+        ModelState.AddModelError("", "Tên đăng nhập hoặc mật khẩu không đúng.");
+        return RedirectToAction("Index", "Login");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
