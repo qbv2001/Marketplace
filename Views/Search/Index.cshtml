@@ -44,9 +44,9 @@
         <header class="mb-3">
                 <div class="form-inline">
                     <strong class="mr-md-auto">@ViewBag.producttotal sản phẩm được tìm thấy </strong>
-                    <select class="mr-2 form-control">
-                        <option>Phổ biến nhất</option>
-                        <option>rẻ nhất</option>
+                    <select data-urlaction="@Url.Action("Search", new { keyword = ViewBag.Keyword, minValue = ViewBag.MinValue, maxValue = ViewBag.MaxValue })" id="sortOption" class="mr-2 form-control" name="sortby">
+                        <option value="popular">Phổ biến nhất</option>
+                        <option value="cheapest">Rẻ nhất</option>
                     </select>
                 </div>
         </header><!-- sect-heading -->
@@ -61,7 +61,7 @@
                         <figcaption class="info-wrap">
                             <a href="detailproduct" class="title">@item.Name</a>
                             <div class="price mt-1">@item.Price đ</div>
-                            <div class="rating-wrap mb-2">
+                            @* <div class="rating-wrap mb-2">
                                 <ul class="rating-stars">
                                     <li style="width:80%" class="stars-active"> 
                                         <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
@@ -75,7 +75,7 @@
                                     </li>
                                 </ul>
                                 <div class="label-rating">4/5</div>
-                            </div> <!-- rating-wrap.// -->
+                            </div> <!-- rating-wrap.// --> *@
                         </figcaption>
                     </div>
                 </div>
@@ -87,21 +87,21 @@
             @if (ViewBag.CurrentPage > 1)
             {
                 <li class="page-item">
-                    <a class="page-link" href="@Url.Action("Search", new { keyword = ViewBag.Keyword, minValue = ViewBag.MinValue, maxValue = ViewBag.MaxValue, page = ViewBag.CurrentPage - 1 })">Trang trước</a>
+                    <a class="page-link" href="@Url.Action("Search", new { keyword = ViewBag.Keyword, minValue = ViewBag.MinValue, maxValue = ViewBag.MaxValue, sortby = ViewBag.Sortby, page = ViewBag.CurrentPage - 1 })">Trang trước</a>
                 </li>
             }
 
             @for (int i = 1; i <= ViewBag.TotalPages; i++)
             {
                 <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
-                    <a class="page-link" href="@Url.Action("Search", new { keyword = ViewBag.Keyword, minValue = ViewBag.MinValue, maxValue = ViewBag.MaxValue, page = i })">@i</a>
+                    <a class="page-link" href="@Url.Action("Search", new { keyword = ViewBag.Keyword, minValue = ViewBag.MinValue, maxValue = ViewBag.MaxValue, sortby = ViewBag.Sortby, page = i })">@i</a>
                 </li>
             }
 
             @if (ViewBag.CurrentPage < ViewBag.TotalPages)
             {
                 <li class="page-item">
-                    <a class="page-link" href="@Url.Action("Search", new { keyword = ViewBag.Keyword, minValue = ViewBag.MinValue, maxValue = ViewBag.MaxValue, page = ViewBag.CurrentPage + 1 })">Trang sau</a>
+                    <a class="page-link" href="@Url.Action("Search", new { keyword = ViewBag.Keyword, minValue = ViewBag.MinValue, maxValue = ViewBag.MaxValue, sortby = ViewBag.Sortby, page = ViewBag.CurrentPage + 1 })">Trang sau</a>
                 </li>
             }
         </ul>
@@ -113,3 +113,4 @@
 </div> <!-- container .//  -->
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
+<script src="~/js/search.js"></script>

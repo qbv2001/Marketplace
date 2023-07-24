@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "E43CTD1369trBa4bXZPU5qWaawR2IGlKxRMNNW7xcTA=",
+  "Hash": "NwDJTeIAGODeFIIzdsm7uukcIR+uLQx6fIhpEqlp2R8=",
   "Source": "Marketplace",
   "BasePath": "_content/Marketplace",
   "Mode": "Default",
@@ -2344,6 +2344,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\script.js"
+    },
+    {
+      "Identity": "C:\\Users\\huuti\\OneDrive\\Desktop\\Marketplace\\wwwroot\\js\\search.js",
+      "SourceId": "Marketplace",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\huuti\\OneDrive\\Desktop\\Marketplace\\wwwroot\\",
+      "BasePath": "_content/Marketplace",
+      "RelativePath": "js/search.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\search.js"
     },
     {
       "Identity": "C:\\Users\\huuti\\OneDrive\\Desktop\\Marketplace\\wwwroot\\js\\site.js",

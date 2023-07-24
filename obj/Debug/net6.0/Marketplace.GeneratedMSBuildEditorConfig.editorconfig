@@ -15,6 +15,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\huuti\OneDrive\Desktop\Marketplace
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/huuti/OneDrive/Desktop/Marketplace/Views/Account/Overview.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxPdmVydmlldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/huuti/OneDrive/Desktop/Marketplace/Views/Auth/Login/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxMb2dpblxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

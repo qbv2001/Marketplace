@@ -59,6 +59,15 @@ public class LoginController : Controller
         return RedirectToAction("Index", "Login");
     }
 
+    public IActionResult Logout()
+    {
+        // Xóa session hoặc token hiện tại của người dùng
+        HttpContext.Session.Clear(); // Đối với session
+
+        // Chuyển hướng về trang chủ hoặc trang đăng nhập
+        return RedirectToAction("Index", "Home"); //
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

@@ -28,15 +28,16 @@ public class HomeController : Controller
 
     // Action xử lý khi người dùng nhấn nút "Tìm kiếm"
     [HttpGet]
-    public IActionResult Search(string keyword, int minValue=0, int maxValue=0, int page=1)
+    public IActionResult Search(string keyword, int minValue=0, int maxValue=0, string sortby= "popular", int page=1)
     {
         // Thực hiện truy vấn cơ sở dữ liệu để lấy danh sách các sản phẩm phù hợp với từ khóa tìm kiếm
-        var products = GetProductsForPage(page, keyword,minValue,maxValue);
+        var products = GetProductsForPage(page, keyword,minValue,maxValue, sortby);
 
         ViewBag.products = products;
         ViewBag.Keyword = keyword;
         ViewBag.MinValue = minValue;
         ViewBag.MaxValue = maxValue;
+        ViewBag.Sortby = sortby;
         // Trả về view "search" và truyền danh sách sản phẩm phù hợp vào view để hiển thị kết quả
         return View("~/Views/Search/Index.cshtml");
     }
@@ -49,7 +50,7 @@ public class HomeController : Controller
         return Json(products);
     }
     
-    public List<ProductModel> GetProductsForPage(int page, string keyword = "", int minValue = 0, int maxValue = 0)
+    public List<ProductModel> GetProductsForPage(int page, string keyword = "", int minValue = 0, int maxValue = 0,string sortby = "popular")
     {
         int itemsPerPage = 1;
         // Số sản phẩm bắt đầu từ (page - 1) * itemsPerPage
@@ -62,6 +63,15 @@ public class HomeController : Controller
             products = _dbContext.Product.Where(p => p.Name.Contains(keyword) && p.Price >= minValue).ToList();
         }else{
             products = _dbContext.Product.Where(p => p.Name.Contains(keyword) && p.Price >= minValue && p.Price <= maxValue).ToList();
+        }
+
+        if (sortby == "popular")
+        {
+        }
+        else if (sortby == "cheapest")
+        {
+            // Sắp xếp sản phẩm theo giá rẻ nhất
+            products = products.OrderBy(p => p.Price).ToList();
         }
 
         var productsForPage = products.Skip(skipProducts).Take(itemsPerPage).ToList();
