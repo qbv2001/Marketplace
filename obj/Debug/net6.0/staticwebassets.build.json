@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "1wi3T8YKFUhCtFP9xXztdn/FwlXbwt+3WdFxuJsOhCs=",
+  "Hash": "E43CTD1369trBa4bXZPU5qWaawR2IGlKxRMNNW7xcTA=",
   "Source": "Marketplace",
   "BasePath": "_content/Marketplace",
   "Mode": "Default",
@@ -2242,6 +2242,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\posts\\4.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\huuti\\OneDrive\\Desktop\\Marketplace\\wwwroot\\js\\addcart.js",
+      "SourceId": "Marketplace",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\huuti\\OneDrive\\Desktop\\Marketplace\\wwwroot\\",
+      "BasePath": "_content/Marketplace",
+      "RelativePath": "js/addcart.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\addcart.js"
+    },
+    {
+      "Identity": "C:\\Users\\huuti\\OneDrive\\Desktop\\Marketplace\\wwwroot\\js\\addcart2.js",
+      "SourceId": "Marketplace",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\huuti\\OneDrive\\Desktop\\Marketplace\\wwwroot\\",
+      "BasePath": "_content/Marketplace",
+      "RelativePath": "js/addcart2.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\addcart2.js"
     },
     {
       "Identity": "C:\\Users\\huuti\\OneDrive\\Desktop\\Marketplace\\wwwroot\\js\\bootstrap.bundle.min.js",

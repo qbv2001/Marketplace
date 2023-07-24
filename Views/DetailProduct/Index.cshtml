@@ -78,7 +78,7 @@
 			  <div class="input-group-prepend">
 			    <button class="btn btn-light" type="button" id="button-plus"> + </button>
 			  </div>
-			  <input type="text" class="form-control" value="1">
+			  <input id="quantity" type="text" class="form-control" value="1">
 			  <div class="input-group-append">
 			    <button class="btn btn-light" type="button" id="button-minus"> &minus; </button>
 			  </div>
@@ -92,7 +92,7 @@
 	</div> <!-- row.// -->
 	<div class="form-row">
 		<div class="form-group col-md">
-			<a href="#" class="btn btn-light">
+			<a id = "cartadd" data-addcart="@Url.Action("AddToCart", "ShoppingCart")" data-product-id="@ViewBag.productDetail.ProductId" onclick="return false" class="btn btn-light">
 				<i class="fas fa-shopping-cart"></i> <span class="text">Thêm Vào Giỏ Hàng</span> 
 			</a>
 			<a href="#"  class="btn  btn-primary">
@@ -167,3 +167,4 @@
 </div> <!-- container .//  -->
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
+<script src="~/js/addcart.js"></script>

@@ -18394,6 +18394,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\huuti\\OneDrive\\Desktop\\Marketplace\\Views\\Search\\Index.cshtml",
+      "TargetPath": "Views\\Search\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\huuti\\OneDrive\\Desktop\\Marketplace\\Views\\Auth\\Login\\Index.cshtml",
       "TargetPath": "Views\\Auth\\Login\\Index.cshtml",
       "FileKind": "mvc"

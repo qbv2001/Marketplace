@@ -1,0 +1,115 @@
+@{
+    ViewData["Title"] = "Shopee | Mua và bán";
+}
+
+<!-- ============================  FILTER TOP  ================================= -->
+<div class="card mb-3">
+	<div class="card-body">
+		<ol class="breadcrumb float-left">
+			<li class="breadcrumb-item"><a href="#">Kết quả tìm kiếm liên quan đến: @ViewBag.Keyword</a></li>
+		</ol>
+	</div> <!-- card-body .// -->
+</div> <!-- card.// -->
+<!-- ============================ FILTER TOP END.// ================================= -->
+
+
+<div class="row">
+	<aside class="col-md-2">
+	<article class="filter-group">
+		<h6 class="title">
+			<a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_3"> Khoảng giá </a>
+		</h6>
+        <form method="get" asp-controller="Home" asp-action="Search">
+            <input name="keyword" value="@ViewBag.Keyword" class="form-control" placeholder="0đ" type="hidden">
+            <div class="filter-content collapse show" id="collapse_3">
+                <div class="inner">
+                    @* <input type="range" class="custom-range" min="0" max="100" name=""> *@
+                    <div class="form-row">
+                    <div class="form-group col-md-6">
+                    <label>Từ</label>
+                    <input name="minValue" @(ViewBag.MinValue != 0 ? "value = " + ViewBag.MinValue : "")  class="form-control" placeholder="0đ" type="number">
+                    </div>
+                    <div class="form-group text-right col-md-6">
+                    <label>Đến</label>
+                    <input name="maxValue" @(ViewBag.MaxValue != 0 ? "value = " + ViewBag.MaxValue : "") class="form-control" placeholder="1,0000,000đ" type="number">
+                    </div>
+                    </div> <!-- form-row.// -->
+                    <button class="btn btn-block btn-primary">Áp dụng</button>
+                </div> <!-- inner.// -->
+            </div>
+        </form>
+	</article> <!-- filter-group .// -->
+	</aside> <!-- col.// -->
+	<main class="col-md-10">
+        <header class="mb-3">
+                <div class="form-inline">
+                    <strong class="mr-md-auto">@ViewBag.producttotal sản phẩm được tìm thấy </strong>
+                    <select class="mr-2 form-control">
+                        <option>Phổ biến nhất</option>
+                        <option>rẻ nhất</option>
+                    </select>
+                </div>
+        </header><!-- sect-heading -->
+
+
+        <div class="row row-sm" id="productContainer">
+        @foreach (var item in ViewBag.products)
+            {
+                <div class="col-xl-2 col-lg-3 col-md-4 col-6">
+                    <div class="card card-sm card-product-grid">
+                        <a href="../detailproduct?spid=@item.ProductId" class="img-wrap"> <img src="@item.ImageUrl"> </a>
+                        <figcaption class="info-wrap">
+                            <a href="detailproduct" class="title">@item.Name</a>
+                            <div class="price mt-1">@item.Price đ</div>
+                            <div class="rating-wrap mb-2">
+                                <ul class="rating-stars">
+                                    <li style="width:80%" class="stars-active"> 
+                                        <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                        <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                        <i class="fa fa-star"></i> 
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                        <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                        <i class="fa fa-star"></i> 
+                                    </li>
+                                </ul>
+                                <div class="label-rating">4/5</div>
+                            </div> <!-- rating-wrap.// -->
+                        </figcaption>
+                    </div>
+                </div>
+            }
+        </div> <!-- row.// -->
+
+        <nav class="mb-4" aria-label="Page navigation sample">
+        <ul class="pagination">
+            @if (ViewBag.CurrentPage > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("Search", new { keyword = ViewBag.Keyword, minValue = ViewBag.MinValue, maxValue = ViewBag.MaxValue, page = ViewBag.CurrentPage - 1 })">Trang trước</a>
+                </li>
+            }
+
+            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+            {
+                <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("Search", new { keyword = ViewBag.Keyword, minValue = ViewBag.MinValue, maxValue = ViewBag.MaxValue, page = i })">@i</a>
+                </li>
+            }
+
+            @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("Search", new { keyword = ViewBag.Keyword, minValue = ViewBag.MinValue, maxValue = ViewBag.MaxValue, page = ViewBag.CurrentPage + 1 })">Trang sau</a>
+                </li>
+            }
+        </ul>
+        </nav>
+	</main> <!-- col.// -->
+
+</div>
+
+</div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
